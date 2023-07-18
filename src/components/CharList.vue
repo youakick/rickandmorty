@@ -1,6 +1,6 @@
 <template>
     <div class="container">
-        <div class="exact-char" v-for="char in data" :key="char.id">
+        <div class="exact-char" v-for="char in characters" :key="char.id">
             <img :src="char.image" :alt="char.name"/>
             <div class="descr">
                 <h2>Character information:</h2>
@@ -14,42 +14,15 @@
 </template>
 
 <script>
-import {fetchData} from '@/services/fetchData.js'
 
 export default {
-    data() {
-        return {
-            link: 'character',
-            name: '',
-            data: null
-        }
-    },
     beforeMount() {
-        this.getData(this.link, this.name)
-    },
-    methods: {
-        async getData(link, name) {
-            try {
-                this.data = await fetchData(link, name)
-                console.log(this.data)
-            } catch (error) {
-                console.log(error)
-            }
-        },
-        searchedData() {
-            return this.name = this.inputValue
-        }
+        this.$store.dispatch('fetchCharacters')
     },
     computed: {
-        inputValue() {
-            return this.$store.state.inputModule.inputValue
+        characters() {
+            return this.$store.getters['getCharacters']
         },
-        example() {
-            return this.searchedData()
-        },
-        exampleCheck() {
-            return this.getData(this.link, this.inputValue)
-        }
     }
 }
 </script>
