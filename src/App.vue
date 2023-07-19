@@ -1,19 +1,24 @@
 <template>
-  <div class="container">
+  <div id="app" class="container">
     <nav-bar class="bar"/>
-    <main-page class="main-page"/>
+<!--     <router-view></router-view> -->
+      <main-page class="main-page"/>
+<!--       <selected-char/> -->
   </div>
 </template>
 
 <script>
 import MainPage from '@/pages/MainPage.vue'
 import NavBar from '@/components/NavBar.vue'
+/* import SelectedChar from '@/pages/MainPage.vue' */
+
 
 export default {
   components: {
     NavBar,
-    MainPage
-  }
+    MainPage,
+    /* SelectedChar */
+}
 }
 </script>
 
