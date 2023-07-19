@@ -1,18 +1,21 @@
+import {fetchCharacters} from "@/services/fetchData";
+
 export const inputModule = {
     state: () => ({
-        inputValue: ''
+        characters: [],
     }),
     getters: {
-
+        getCharacters: (state) => state.characters,
     },
     mutations: {
-        setInputValue(state, value) {
-            state.inputValue = value
-        }
+        setCharacters(state, list) {
+          state.characters = list
+        },
     },
     actions: {
-        saveInputValue({commit}, value) {
-            commit('setInputValue', value)
+        async fetchCharacters({commit}, name) {
+          const data = await fetchCharacters(name)
+            commit('setCharacters', data)
         }
     },
 }

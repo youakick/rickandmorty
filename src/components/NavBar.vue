@@ -20,7 +20,7 @@ export default {
   },
   methods: {
     saveInputValue() {
-      this.$store.dispatch('saveInputValue', this.inputValue)
+      this.$store.dispatch('fetchCharacters', this.inputValue)
     }
   }
 }
