@@ -1,6 +1,9 @@
 import MainPage from '@/pages/MainPage.vue'
 import SelectedChar from '@/pages/SelectedChar.vue'
-import {createRouter, createWebHashHistory} from 'vue-router'
+import AboutPage from '@/pages/AboutPage.vue'
+import EpisodesPage from '@/pages/EpisodesPage.vue'
+import LocationsPage from '@/pages/LocationsPage.vue'
+import {createRouter, createWebHistory} from 'vue-router'
 
 const routes = [
     {
@@ -8,14 +11,26 @@ const routes = [
         component: MainPage
     },
     {
-        path: '/selec',
+        path: '/selec/:id',
         component: SelectedChar
-    }
+    },
+    {
+        path: '/about',
+        component: AboutPage
+    },
+    {
+        path: '/episodes',
+        component: EpisodesPage
+    },
+    {
+        path: '/locations',
+        component: LocationsPage
+    },
 ]
 
 const router = createRouter({
-    routes,
-    history: createWebHashHistory()
+    history: createWebHistory(),
+    routes
 })
 
 export default router

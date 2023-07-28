@@ -1,8 +1,12 @@
 <template>
     <div class="column">
+        <form action="submit" class="search-form" >
+          <input type="text"  placeholder=" Search character" v-model="inputValue">
+          <button class="search-btn" type="submit" @click.prevent="">Search</button>
+      </form>
         <h2>Episodes:</h2>
         <div class="episode-wrapper">
-            <div v-for="episode in data" :key="episode.id">
+            <div v-for="episode in episodes" :key="episode.id">
                 <div><h3>{{ episode.episode }}</h3></div>
                 <div><h4>Episode name: {{ episode.name }}</h4></div>
                 <div><h4>Air date: {{ episode.air_date }}</h4></div>
@@ -12,21 +16,25 @@
 </template>
 
 <script>
-import {fetchData} from '@/services/fetchData.js'
+import { mapGetters} from 'vuex'
 
 export default {
     data() {
         return {
             link: 'episode',
             data: null,
+            inputValue: ''
         }
     },
     async beforeMount() {
-        try {
-            this.data = await fetchData(this.link)
-            console.log(this.data)
-        } catch (error) {
-            console.log(error)
+        this.$store.dispatch('fetchEpisodes')
+    },
+    computed: {
+    ...mapGetters([
+      'getEpisodes'
+    ]),
+        episodes() {
+            return this.inputValue === "" ? this.getEpisodes : this.getEpisodes.filter(episode => episode.name.toLowerCase() === this.inputValue)
         }
     }
 }

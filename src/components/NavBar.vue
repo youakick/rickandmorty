@@ -1,9 +1,9 @@
 <template>
     <nav class="navbar">
-      <button>Home</button>
-      <button>Episodes</button>
-      <button>Locations</button>
-      <button>About</button>
+      <button @click="$router.push('/')">Home</button>
+      <button @click="$router.push('/episodes')">Episodes</button>
+      <button @click="$router.push('/locations')">Locations</button>
+      <button @click="$router.push('/about')">About</button>
       <form action="submit" class="search-form" >
           <input type="text"  placeholder=" Search character" v-model="inputValue">
           <button class="search-btn" type="submit" @click.prevent="saveInputValue">Search</button>

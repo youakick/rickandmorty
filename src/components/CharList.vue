@@ -1,6 +1,6 @@
 <template>
     <div class="container">
-        <div class="exact-char" v-for="char in characters" :key="char.id">
+        <div class="exact-char" v-for="char in characters" :key="char.id" @click="$router.push(`/selec/${char.id}`)">
             <img :src="char.image" :alt="char.name"/>
             <div class="descr">
                 <h2>Character information:</h2>
@@ -14,7 +14,6 @@
 </template>
 
 <script>
-
 export default {
     beforeMount() {
         this.$store.dispatch('fetchCharacters')

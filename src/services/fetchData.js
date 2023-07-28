@@ -1,8 +1,18 @@
 import axios from 'axios'
 
-export async function fetchData(link, name = "") {
+export async function fetchData(id) {
   try {
-    const response = await axios.get(`https://rickandmortyapi.com/api/${link}/?name=${name}`);
+    const response = await axios.get(`https://rickandmortyapi.com/api/character/${id}`);
+    return response.data;
+  } catch (error) {
+    console.error('Error fetching data:', error);
+    throw error;
+  }
+}
+
+export async function fetchEpisodes() {
+  try {
+    const response = await axios.get(`https://rickandmortyapi.com/api/episode`);
     return response.data.results;
   } catch (error) {
     console.error('Error fetching data:', error);

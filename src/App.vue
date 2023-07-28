@@ -1,23 +1,16 @@
 <template>
   <div id="app" class="container">
     <nav-bar class="bar"/>
-<!--     <router-view></router-view> -->
-      <main-page class="main-page"/>
-<!--       <selected-char/> -->
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
-import MainPage from '@/pages/MainPage.vue'
 import NavBar from '@/components/NavBar.vue'
-/* import SelectedChar from '@/pages/MainPage.vue' */
-
 
 export default {
   components: {
-    NavBar,
-    MainPage,
-    /* SelectedChar */
+    NavBar
 }
 }
 </script>
@@ -31,6 +24,7 @@ export default {
 
 .container {
   background-color: rgba(0, 119, 255, 0.2);
+  min-height:auto;
 }
 
 .main-page {
