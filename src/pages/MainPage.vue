@@ -20,7 +20,7 @@ export default {
 
 <style scoped>
 .main-content {
-  display: inline-flex;
+  display: flex;
 }
 
 .char-list{

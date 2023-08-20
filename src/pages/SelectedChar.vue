@@ -7,7 +7,7 @@
             <h1>{{ char.name}} is a {{ char.species }} who took part in {{ char.episode.length }} episode(s)</h1>
             <h3>Status: {{ char.status }}</h3>
             <h3>Gender: {{ char.gender }}</h3>
-            <h3></h3>
+            <button @click="$router.push('/')">Back to main page</button>
         </div> 
     </div>
 </template>
@@ -38,5 +38,8 @@ export default {
     }
     h1{
         margin: 0 auto
+    }
+    button {
+        cursor: pointer;
     }
 </style>
