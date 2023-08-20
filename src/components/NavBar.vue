@@ -21,6 +21,8 @@ export default {
   methods: {
     saveInputValue() {
       this.$store.dispatch('fetchCharacters', this.inputValue)
+      this.$store.commit('setInputToogler')
+      this.inputValue = ''
     }
   }
 }

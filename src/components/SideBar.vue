@@ -12,6 +12,7 @@
                 <div><h4>Air date: {{ episode.air_date }}</h4></div>
             </div>
         </div>
+        <div ref="observer" class="observer"></div>
     </div>
 </template>
 
@@ -23,12 +24,31 @@ export default {
         return {
             link: 'episode',
             data: null,
-            inputValue: ''
+            inputValue: '',
+            page: 1
         }
     },
+
     async beforeMount() {
         this.$store.dispatch('fetchEpisodes')
     },
+
+    mounted() {
+        let options = {
+            rootMargin: "0px",
+            threshold: 1.0,
+        };
+        let callback = (entries) => {
+            if(entries[0].isIntersecting && this.page < 3) {
+                this.page++
+                this.$store.dispatch('fetchEpisodes', this.page)
+            }
+        }
+
+        let observer = new IntersectionObserver(callback, options);
+        observer.observe(this.$refs.observer);
+    },
+
     computed: {
     ...mapGetters([
       'getEpisodes'
@@ -62,5 +82,10 @@ h4{
 .episode-wrapper :hover {
     background-color: rgba(221, 221, 221, 0.8);
     cursor: pointer;
+}
+
+.observer{
+    min-height: 50px;
+    min-width: 100%;
 }
 </style>

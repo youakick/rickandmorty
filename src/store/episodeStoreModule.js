@@ -10,12 +10,12 @@ export const episodeStoreModule = {
     },
     mutations: {
         setEpisodes(state, list) {
-          state.episodes = list
+          state.episodes = [...state.episodes,...list]
         },
     },
     actions: {
-        async fetchEpisodes({commit}) {
-          const data = await fetchEpisodes('episodes')
+        async fetchEpisodes({commit}, page) {
+          const data = await fetchEpisodes(page)
             commit('setEpisodes', data)
         }
     }
